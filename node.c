@@ -16,3 +16,10 @@ p_node createNode(int val)
 
     return nouv;
 }
+
+void print_node(p_node p){
+    printf("val : %d \n",p->value);
+    printf("left : %d \n right : %d\n", p->left->value , p->right->value);
+
+
+}

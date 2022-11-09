@@ -15,4 +15,5 @@ struct s_node
 typedef struct s_node t_node, *p_node;
 
 p_node createNode(int);
+void print_node(p_node);
 #endif //UNTITLED2_NODE_H
