@@ -5,6 +5,7 @@
 #ifndef UNTITLED2_BINTREE_H
 #define UNTITLED2_BINTREE_H
 #include "node.h"
+#include <stdlib.h>
 
 typedef p_node tree;
 

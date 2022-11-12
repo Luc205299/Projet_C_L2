@@ -1,7 +1,7 @@
 
 
 #include "bintree.h"
-#include "node.h"
+
 
 int main()
 {
