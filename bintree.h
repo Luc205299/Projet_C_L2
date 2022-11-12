@@ -6,9 +6,12 @@
 #define UNTITLED2_BINTREE_H
 #include "node.h"
 
-typedef struct s_tree
-{
-    p_node root;
-} t_tree, *p_tree;
+typedef p_node tree;
+
+tree create_tree();
+void empty_char(char* word, int taille);
+void print2DUtil(p_node toto, int space);
+void print2D(p_node toto);
+tree full_tree(char* adresse, char* type);
 
 #endif //UNTITLED2_BINTREE_H

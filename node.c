@@ -6,20 +6,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-p_node createNode(int val)
+
+p_node create_node(char lettre)
 {
-    p_node nouv;
-
-    nouv = (p_node)malloc(sizeof(t_node));
-    nouv->value = val;
-    nouv->left = nouv->right = NULL;
-
-    return nouv;
-}
-
-void print_node(p_node p){
-    printf("val : %d \n",p->value);
-    printf("left : %d \n right : %d\n", p->left->value , p->right->value);
-
-
+    p_node nouveau_fiston = malloc(sizeof(t_node));
+    nouveau_fiston->reuf = NULL;
+    nouveau_fiston->LaChaireDeMaChaire = NULL;
+    nouveau_fiston->lettre = lettre;
+    nouveau_fiston->flechie = NULL;
+    return nouveau_fiston;
 }
