@@ -112,14 +112,18 @@ tree full_tree(char* adresse, char* type)
                 node_tmp->flechie->nombre_flechies = 1;
                 node_tmp->flechie->forme_flechie = malloc(sizeof(char*));
                 node_tmp->flechie->forme_mode = malloc(sizeof(char*));
+                node_tmp->flechie->base = malloc(sizeof(char*));
             }else
             {
                 node_tmp->flechie->nombre_flechies++;
                 node_tmp->flechie->forme_flechie = realloc(node_tmp->flechie->forme_flechie,sizeof (char*)*node_tmp->flechie->nombre_flechies);
                 node_tmp->flechie->forme_mode = realloc(node_tmp->flechie->forme_mode,sizeof(char*)*node_tmp->flechie->nombre_flechies);
+                node_tmp->flechie->base = realloc(node_tmp->flechie->base,sizeof(char*)*node_tmp->flechie->nombre_flechies);
             }
             node_tmp->flechie->forme_flechie[node_tmp->flechie->nombre_flechies-1] = flechie;
             node_tmp->flechie->forme_mode[node_tmp->flechie->nombre_flechies-1] = mode;
+            node_tmp->flechie->base[node_tmp->flechie->nombre_flechies-1] = base;
+            //printf("%s,%s,%s\n",node_tmp->flechie->forme_flechie[node_tmp->flechie->nombre_flechies-1],node_tmp->flechie->base[node_tmp->flechie->nombre_flechies-1],node_tmp->flechie->forme_mode[node_tmp->flechie->nombre_flechies-1]);
         }
 
 
@@ -131,7 +135,7 @@ tree full_tree(char* adresse, char* type)
 }
 
 
-void recherche_base(char* mot,tree arbre)
+p_node recherche_base_part1(char* mot,tree arbre)
 {
     p_node node = arbre;
     int i = 0;
@@ -140,11 +144,36 @@ void recherche_base(char* mot,tree arbre)
         while (mot[i] != node->lettre)
         {
             node = node->reuf;
+            if (node == NULL)
+            {
+                printf("Aucun mot ne correspond a votre recherche.");
+                return 0;
+            }
         }
         node = node->LaChaireDeMaChaire;
         i++;
     }
-    while()
+    if (node == NULL)
+    {
+        printf("%s",mot);
+    }
+    return node;
+}
+
+void recherche_base_part2(p_node node)
+{
+    if (node == NULL)
+    {
+        return;
+    }
+    if (node->flechie != NULL)
+    {
+        printf("%s\n",node->flechie->base[0]);
+    }
+
+    recherche_base_part2(node->reuf);
+    recherche_base_part2(node->LaChaireDeMaChaire);
+
 }
 
 

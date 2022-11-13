@@ -10,6 +10,7 @@ struct Struct_flechie
     int nombre_flechies;
     char** forme_flechie;
     char** forme_mode;
+    char** base;
 };
 typedef struct Struct_flechie s_flechie;
 
