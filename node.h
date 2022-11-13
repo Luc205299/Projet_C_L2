@@ -17,7 +17,7 @@ typedef struct Struct_flechie s_flechie;
 struct s_node
 {
     char lettre;
-    struct s_node *LaChaireDeMaChaire, *reuf;
+    struct s_node *fils, *frere;
     s_flechie *flechie;
 };
 typedef struct s_node t_node, *p_node;

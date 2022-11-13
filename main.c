@@ -3,6 +3,7 @@
 #include "bintree.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 
 int main()
@@ -14,8 +15,13 @@ int main()
     tree arbre_adj = full_tree(fichier,"Adj");
     tree arbre_adv = full_tree(fichier,"Adv");
     //print2D(arbre_verbe);
-    char* mot = "aller";
+    char* mot = "all";
     recherche_base_part2(recherche_base_part1(mot,arbre_verbe));
+
+
+
+
+    base_aleatoire(arbre_verbe);
     return 0;
 }
 

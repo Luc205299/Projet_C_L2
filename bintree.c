@@ -4,12 +4,15 @@
 #include <string.h>
 #include "bintree.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
 tree create_tree()
 {
     tree arbre = malloc(sizeof(t_node));
     arbre->lettre = ' ';
-    arbre->LaChaireDeMaChaire = NULL;
-    arbre->reuf = NULL;
+    arbre->fils = NULL;
+    arbre->frere = NULL;
     arbre->flechie = NULL;
     return arbre;
 }
@@ -89,22 +92,22 @@ tree full_tree(char* adresse, char* type)
             p_node node_tmp = arbre;
             for (i = 0;base[i]!='\0';i++)
             {
-                while (base[i] != node_tmp->lettre && node_tmp->reuf != NULL)
+                while (base[i] != node_tmp->lettre && node_tmp->frere != NULL)
                 {
-                    node_tmp = node_tmp->reuf;
+                    node_tmp = node_tmp->frere;
                 }
                 if (node_tmp->lettre != base[i])
                 {
-                    node_tmp->reuf = create_node(base[i]);
-                    node_tmp = node_tmp->reuf;
+                    node_tmp->frere = create_node(base[i]);
+                    node_tmp = node_tmp->frere;
                 }
                 if (base[i+1] != '\0')
                 {
-                    if (node_tmp->LaChaireDeMaChaire == NULL)
+                    if (node_tmp->fils == NULL)
                     {
-                        node_tmp->LaChaireDeMaChaire = create_node(base[i+1]);
+                        node_tmp->fils = create_node(base[i+1]);
                     }
-                    node_tmp = node_tmp->LaChaireDeMaChaire;
+                    node_tmp = node_tmp->fils;
                 }
             }
             if (node_tmp->flechie == NULL){
@@ -143,19 +146,19 @@ p_node recherche_base_part1(char* mot,tree arbre)
     {
         while (mot[i] != node->lettre)
         {
-            node = node->reuf;
+            node = node->frere;
             if (node == NULL)
             {
                 printf("Aucun mot ne correspond a votre recherche.");
                 return 0;
             }
         }
-        node = node->LaChaireDeMaChaire;
+        node = node->fils;
         i++;
     }
     if (node == NULL)
     {
-        printf("%s",mot);
+        printf("%s\n",mot);
     }
     return node;
 }
@@ -171,12 +174,44 @@ void recherche_base_part2(p_node node)
         printf("%s\n",node->flechie->base[0]);
     }
 
-    recherche_base_part2(node->reuf);
-    recherche_base_part2(node->LaChaireDeMaChaire);
+    recherche_base_part2(node->frere);
+    recherche_base_part2(node->fils);
 
 }
 
-
+void base_aleatoire(tree arbre)
+{
+    srand(time(NULL));
+    p_node node = arbre;
+    while (node!= NULL)
+    {
+        p_node tmp = node;
+        int compteur = 0;
+        while (tmp->frere != NULL)
+        {
+            tmp = tmp->frere;
+            compteur++;
+        }
+        int aleatoire = 0;
+        if(compteur != 0)
+        {
+            aleatoire = rand() % compteur + 1;
+        }
+        for (int i = 0;i < aleatoire;i++)
+        {
+            node = node->frere;
+        }
+        if (node->flechie != NULL)
+        {
+            printf("%s\n",node->flechie->base[0]);
+            return;
+        }
+        else
+        {
+            node = node->fils;
+        }
+    }
+}
 
 
 void print2DUtil(p_node toto, int space)
@@ -190,7 +225,7 @@ void print2DUtil(p_node toto, int space)
     space += COUNT;
 
     // Process right child first
-    print2DUtil(toto->reuf, space);
+    print2DUtil(toto->frere, space);
 
     // Print current node after space
     // count
@@ -200,7 +235,7 @@ void print2DUtil(p_node toto, int space)
     printf("%c\n", toto->lettre);
 
     // Process left child
-    print2DUtil(toto->LaChaireDeMaChaire, space);
+    print2DUtil(toto->fils, space);
 }
 
 void print2D(p_node toto)
