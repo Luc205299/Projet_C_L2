@@ -17,11 +17,15 @@ int main()
     //print2D(arbre_verbe);
     char* mot = "all";
     recherche_base_part2(recherche_base_part1(mot,arbre_verbe));
+    printf("\n");
+    recherche_base_part2(recherche_base_part1(mot,arbre_nom));
+    printf("\n");
+    phrase_base(arbre_nom,arbre_adj,arbre_verbe);
 
 
 
-
-    base_aleatoire(arbre_verbe);
+    //base_aleatoire(arbre_verbe);
+    //mettre slash n
     return 0;
 
 }

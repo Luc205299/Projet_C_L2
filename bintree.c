@@ -203,7 +203,7 @@ void base_aleatoire(tree arbre)
         }
         if (node->flechie != NULL)
         {
-            printf("%s\n",node->flechie->base[0]);
+            printf("%s ",node->flechie->base[0]);
             return;
         }
         else
@@ -213,6 +213,12 @@ void base_aleatoire(tree arbre)
     }
 }
 
+void phrase_base(tree Nom,tree Adj,tree Ver){
+    base_aleatoire(Nom);
+    base_aleatoire(Adj);
+    base_aleatoire(Ver);
+    base_aleatoire(Nom);
+}
 
 void print2DUtil(p_node toto, int space)
 {
