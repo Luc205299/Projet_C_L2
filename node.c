@@ -15,4 +15,5 @@ p_node create_node(char lettre)
     nouveau_fiston->lettre = lettre;
     nouveau_fiston->flechie = NULL;
     return nouveau_fiston;
+
 }

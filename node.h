@@ -24,4 +24,5 @@ typedef struct s_node t_node, *p_node;
 
 
 p_node create_node(char lettre);
+
 #endif //UNTITLED2_NODE_H
